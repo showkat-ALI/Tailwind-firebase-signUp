@@ -10,6 +10,7 @@ function App() {
   const[userEmail,setUserEmail]=useState('')
   const[userPassword,setUserPassword]=useState('')
   const [error,setError]= useState('')
+  const[isLogin,setIsLogin]=useState(false)
   const auth = getAuth();
 
   const handleGoogelsignIN = () => {
@@ -25,6 +26,10 @@ function App() {
   }
   const handleUserPassword = (e)=>{
     setUserPassword(e.target.value)
+  }
+  const handleLogIn = e =>{
+    setIsLogin(e.bubbles);
+
   }
 
   const handleSignUp= (e)=>{
@@ -113,8 +118,13 @@ function App() {
             <div className="my-12 border-b text-center">
               <div
                 className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2"
-              >
-                Or sign up with e-mail
+              >{
+                isLogin ? "sign in with email"
+                :
+                "Or sign up with e-mail"
+
+              }
+                
               </div>
             </div>
             <form onSubmit={handleSignUp}>
@@ -152,6 +162,8 @@ function App() {
                   Sign Up
                 </span>
               </button>
+              <p className="my-8">Already have a accout? <span onClick={handleLogIn} className="text-purple-600">Log in</span></p>
+
               <p>{error}</p>
               <p className="mt-6 text-xs text-gray-600 text-center">
                 I agree to abide by templatana's
